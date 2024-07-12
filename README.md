@@ -1,2 +1,3 @@
 # collage
-Comparison of MySQL charset and collation rules
+
+Compare, with MySQL charset and collation rules
