@@ -28,6 +28,10 @@ object JniUtils {
     val url = getClass.getResource(
       s"/libcollage/$getPlatform/$getArchitecture/libcollage.$getExtensionName"
     )
+    if (url.eq(null))
+      throw new NotImplementedError(
+        s"No binaries provided for $getPlatform ($getArchitecture) yet"
+      )
     System.load(url.getFile)
   }
 }
