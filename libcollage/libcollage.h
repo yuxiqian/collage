@@ -11,8 +11,6 @@ namespace LibCollage {
 
     extern "C" JNIEXPORT jint JNICALL Java_io_github_yuxiqian_libcollage_Collation_compare(
         JNIEnv *env, jobject thiz, jstring charset, jstring lhs, jstring rhs);
-
-    static int BAD_CHARSET = 0x7fffff;
 }
 
 #endif //LIBCOLLAGE_H
