@@ -1,4 +1,4 @@
-# collage
+# collage · [![Collage CI](https://github.com/yuxiqian/collage/actions/workflows/ci.yml/badge.svg)](https://github.com/yuxiqian/collage/actions/workflows/ci.yml)
 
 Compare, with MySQL charset and collation rules
 
