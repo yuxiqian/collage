@@ -16,9 +16,17 @@ object JniUtils {
     System.getProperty("os.arch").toLowerCase
   }
 
+  private def getExtensionName: String = {
+    getPlatform match {
+      case "darwin" => "dylib"
+      case "win32"  => "dll"
+      case "linux"  => "so"
+    }
+  }
+
   def loadLibrary(): Unit = {
     val url = getClass.getResource(
-      s"/libcollage/$getPlatform/$getArchitecture/libcollage.dylib"
+      s"/libcollage/$getPlatform/$getArchitecture/libcollage.$getExtensionName"
     )
     System.load(url.getFile)
   }

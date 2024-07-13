@@ -35,6 +35,7 @@ namespace LibCollage {
             return compare(charset, lhs, lhs_size, rhs, rhs_size);
         } catch (std::runtime_error &e) {
             env->ThrowNew(env->FindClass("java/lang/IllegalArgumentException"), e.what());
+            return 0;
         }
     }
 }
