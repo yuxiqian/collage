@@ -23,7 +23,7 @@ class CollageTest extends AnyFunSuite {
       Collation
         .get("ucs2_icelandic_ci")
         .map(_.toString)
-        .contains("Collation{name=ucs2_icelandic_ci, id=129, charset=UTF-16}")
+        .contains("Collation{name=ucs2_icelandic_ci, id=129, charset=ucs2}")
     )
     assert(Collation.get("not there").isEmpty)
   }
