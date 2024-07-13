@@ -1,9 +1,13 @@
 package io.github.yuxiqian.libcollage
 
+import io.github.yuxiqian.libcollage.Collation.BAD_CHARSET
 import io.github.yuxiqian.libcollage.CollationList._
-import com.mysql.cj.CharsetMapping
 
 object Collation {
+  JniUtils.loadLibrary()
+
+  val BAD_CHARSET = 0x7fffff
+
   def getName(index: Int): Option[String] = {
     collationMapping.get(index)
   }
@@ -26,17 +30,19 @@ object Collation {
 
 class Collation(val collationIndex: Int) {
   private val collationName = collationMapping(collationIndex)
-  private val charsetName = charsetMapping(collationIndex)
+  private val charset = charsetMapping(collationIndex)
 
   override def toString: String = {
-    s"Collation{name=$collationName, id=$collationIndex, charset=$charsetName}"
+    s"Collation{name=$collationName, id=$collationIndex, charset=${charset}}"
   }
 
-  def compare(lhs: String, rhs: String): Integer = {
-    0
+  def compare(lhs: String, rhs: String): Int = {
+    compare(charset, lhs, rhs)
   }
 
-  def compare(lhs: Array[Byte], rhs: Array[Byte]): Integer = {
-    0
-  }
+  @native def compare(
+      charset: String,
+      lhs: String,
+      rhs: String
+  ): Int
 }

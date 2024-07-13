@@ -7,14 +7,14 @@ import scala.collection.JavaConverters._
 
 object CollationList {
   val charsetMapping: Map[Int, String] = {
-    val fieldGetter = getField[String](_, "charsetName")
+    val nameGetter = getField[String](_, "charsetName")
     getStaticField(
       classOf[CharsetMapping],
       "COLLATION_INDEX_TO_CHARSET"
     )
       .asInstanceOf[java.util.Map[Integer, String]]
       .asScala
-      .map(e => e._1.toInt -> fieldGetter(e._2))
+      .map(e => e._1.toInt -> nameGetter(e._2))
       .toMap
   }
 
