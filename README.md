@@ -1,6 +1,6 @@
 # collage · [![Collage CI](https://github.com/yuxiqian/collage/actions/workflows/ci.yml/badge.svg)](https://github.com/yuxiqian/collage/actions/workflows/ci.yml)
 
-Compare, with MySQL charset and collation rules
+Compare, with MySQL charset and collation rules. a Scala port of https://github.com/molindo/molindo-mysql-collations-lib
 
 ## Usage
 
