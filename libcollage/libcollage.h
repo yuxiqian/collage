@@ -2,21 +2,23 @@
 #define LIBCOLLAGE_H
 #include <jni.h>
 
-#include <cstddef>
-#include <cstdint>
 #include <string>
+#include <cstddef>
 
 namespace LibCollage {
-    int compare(const char *charset, const std::string &lhs,
+    int compare(const char *collation_name, const std::string &lhs,
                 const std::string &rhs);
-    int compare(const char *charset, const jbyte *lhs, const size_t lhs_size,
-                const jbyte *rhs, const size_t rhs_size);
-    int compare(const char *, const char *, size_t, const char *, size_t);
+
+    int compare(const char *collation_name, const jbyte *lhs, size_t lhs_size,
+                const jbyte *rhs, size_t rhs_size);
+
+    int compare(const char *collation_name, const char *, size_t, const char *, size_t);
 
     extern "C" JNIEXPORT jint JNICALL
-    Java_io_github_yuxiqian_libcollage_Collation_compare(JNIEnv *env, jobject thiz,
-                                                         jstring charset,
-                                                         jstring lhs, jstring rhs);
-}  // namespace LibCollage
+    Java_io_github_yuxiqian_libcollage_Collation_compareBytes(JNIEnv *env, jobject,
+                                                              jstring j_col_name,
+                                                              jbyteArray j_lhs,
+                                                              jbyteArray j_rhs);
+} // namespace LibCollage
 
 #endif  // LIBCOLLAGE_H

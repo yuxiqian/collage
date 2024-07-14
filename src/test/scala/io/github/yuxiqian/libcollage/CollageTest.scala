@@ -162,6 +162,25 @@ class CollageTest extends AnyFunSuite {
         assert(col.compare("Alice", "Bob") < 0)
         assert(col.compare("Dorothy", "Carolle") > 0)
         assert(col.compare("eve", "EVE") == 0)
+        assert(col.compare("Foxtrot", "Golg") < 0)
+        assert(col.compare("Hotel", "India") < 0)
+        assert(col.compare("Juilet", "Kilo") < 0)
+        assert(col.compare("Lima", "Mike") < 0)
+        assert(col.compare("November", "Oscar") < 0)
+        assert(col.compare("Papa", "Quebec") < 0)
+        assert(col.compare("Romeo", "Sierra") < 0)
+        assert(col.compare("Tango", "Uniform") < 0)
+        assert(col.compare("Victor", "Whisky") < 0)
+        assert(col.compare("X-ray", "Yankee") < 0)
+        assert(col.compare("Zulu", "Alpha") > 0)
+      case None => fail("Unrecognized charset")
+    }
+
+    Collation.get("latin1_general_cs") match {
+      case Some(col) =>
+        assert(col.compare("alice", "Alice") > 0)
+        assert(col.compare("Alice", "alice") < 0)
+        assert(col.compare("Alice", "Alice") == 0)
       case None => fail("Unrecognized charset")
     }
 

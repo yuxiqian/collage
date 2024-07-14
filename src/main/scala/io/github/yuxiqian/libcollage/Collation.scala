@@ -35,17 +35,18 @@ class Collation(val collationIndex: Int) {
   }
 
   def compare(lhs: String, rhs: String): Int = {
-    compareBytes(charset, lhs.getBytes(encoding), rhs.getBytes(encoding))
+    compareBytes(collationName, lhs.getBytes(encoding), rhs.getBytes(encoding))
   }
 
-  @native def compare(
-      charset: String,
-      lhs: String,
-      rhs: String
-  ): Int
+  // JString could not carry encodings correctly.
+  //  @native def compare(
+  //      charset: String,
+  //      lhs: String,
+  //      rhs: String
+  //  ): Int
 
   @native def compareBytes(
-      charset: String,
+      collationName: String,
       lhs: Array[Byte],
       rhs: Array[Byte]
   ): Int
