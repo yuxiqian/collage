@@ -142,7 +142,7 @@ class CollageTest extends AnyFunSuite {
       .filter(s => s.startsWith("|"))
       .foreach(l => {
         val Array(_, collation, charset, id, _*) = {
-          l.split("\\|").map(e => e.strip)
+          l.split("\\|").map(e => e.trim)
         }
         assert(
           Collation
