@@ -33,6 +33,8 @@ typedef unsigned long my_wc_t;
 //    s[1] = code & 0xFF;
 // }
 
+struct CHARSET_INFO;
+
 struct MY_UNICASE_CHARACTER {
    uint32_t toupper;
    uint32_t tolower;

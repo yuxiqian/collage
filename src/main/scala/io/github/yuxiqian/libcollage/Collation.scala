@@ -28,18 +28,25 @@ object Collation {
 class Collation(val collationIndex: Int) {
   private val collationName = collationMapping(collationIndex)
   private val charset = charsetMapping(collationIndex)
+  private val encoding = javaEncodingMapping(charset)
 
   override def toString: String = {
-    s"Collation{name=$collationName, id=$collationIndex, charset=$charset}"
+    s"Collation{name=$collationName, id=$collationIndex, charset=$charset, encoding=$encoding}"
   }
 
   def compare(lhs: String, rhs: String): Int = {
-    compare(charset, lhs, rhs)
+    compareBytes(charset, lhs.getBytes(encoding), rhs.getBytes(encoding))
   }
 
   @native def compare(
       charset: String,
       lhs: String,
       rhs: String
+  ): Int
+
+  @native def compareBytes(
+      charset: String,
+      lhs: Array[Byte],
+      rhs: Array[Byte]
   ): Int
 }

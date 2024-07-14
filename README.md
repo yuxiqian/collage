@@ -23,5 +23,5 @@ col.compare("A", "A")  // == 0
 val col = Collation.get("utf8mb4_icelandic_ci")
 col.compare("Norðurlandanna", "Braggahverfi") // > 0
 col.compare("Reykjavík", "Þannig")            // < 0
-col.compare("íslenska", "íslenska")           // == 0)
+col.compare("íslenska", "íslenska")           // == 0
 ```

@@ -12,9 +12,20 @@ object CollationList {
       classOf[CharsetMapping],
       "COLLATION_INDEX_TO_CHARSET"
     )
-      .asInstanceOf[java.util.Map[Integer, String]]
+      .asInstanceOf[java.util.Map[Integer, Object]]
       .asScala
       .map(e => e._1.toInt -> nameGetter(e._2))
+      .toMap
+  }
+
+  val javaEncodingMapping: Map[String, String] = {
+    val nameGetter = getField[String](_, "charsetName")
+    getStaticField(
+      classOf[CharsetMapping],
+      "JAVA_ENCODING_UC_TO_MYSQL_CHARSET"
+    ).asInstanceOf[java.util.Map[String, java.util.List[Object]]]
+      .asScala
+      .flatMap(e => e._2.asScala.map(f => nameGetter(f) -> e._1))
       .toMap
   }
 
