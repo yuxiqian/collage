@@ -29,7 +29,11 @@ jobs:
         java-version: ${{ matrix.java }}
         distribution: 'temurin'
         cache: 'sbt'
-    - name: Install dependencies
+    - name: Install dependencies (Ubuntu)
+      if: matrix.os == 'ubuntu-latest'
       run: sudo apt-get update && sudo apt-get install -y libmysqlclient-dev
+    - name: Install dependencies (macOS)
+      if: matrix.os == 'macos-latest'
+      run: brew update && brew install mysql-client
     - name: Run tests
       run: sbt test
