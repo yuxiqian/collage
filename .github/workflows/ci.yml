@@ -34,6 +34,6 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y libmysqlclient-dev
     - name: Install dependencies (macOS)
       if: matrix.os == 'macos-latest'
-      run: brew update && brew install mysql-client
+      run: brew update && brew install sbt mysql
     - name: Run tests
       run: sbt test
